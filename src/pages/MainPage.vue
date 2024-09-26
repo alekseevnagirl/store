@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <AButton title="123445"></AButton>
+    <ACatalog title="Catalog"></ACatalog>
 
   </div>
 </template>

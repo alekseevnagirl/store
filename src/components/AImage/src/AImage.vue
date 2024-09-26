@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="image__wrapper">
+      <img :src="src" class="image"/>
     </div>
   </template>
   
@@ -7,6 +8,10 @@
   export default {
     name: 'AImage',
     props: {
+      src: {
+        type: String,
+        default: ''
+      }
     }
   }
   </script>
