@@ -10,7 +10,7 @@
         </AFilter>
       </div>
 
-      <div>
+      <div class="catalog__products__wrapper">
         <p class="catalog__title">{{ title }}</p>
 
         <div class="catalog__products">
@@ -67,10 +67,14 @@
   margin: 0 0 12px 0;
 }
 .catalog__content {
-  display: flex
+  display: flex;
+  width: 100%;
 }
 .catalog__filters {
-  width: 30%;
+  flex: 1 1 20%;
+}
+.catalog__products__wrapper {
+  flex: 1 1 80%;
 }
 .catalog__products {
   display: flex;

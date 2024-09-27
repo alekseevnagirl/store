@@ -46,4 +46,7 @@
   .filter__button:hover {
     cursor: pointer;
   }
+  .filter__button:focus {
+    text-decoration: underline;
+  }
 </style>

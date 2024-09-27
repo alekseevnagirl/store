@@ -2,7 +2,7 @@
     <div class="product__wrapper">
       <AImage :src="productData.image" width="250px" class="product__image"></AImage>
       <p>{{ productData.title }}</p>
-      <p>{{ brandData.title }}</p>
+      <p>{{ productData.brandName }}</p>
       <p>{{ currencySign(productData.regular_price.currency) }} {{ productData.regular_price.value }}</p>
     </div>
   </template>

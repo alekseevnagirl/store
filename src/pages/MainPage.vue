@@ -20,20 +20,26 @@ export default {
     }
   },
   mounted() {
-    axios.get('products.json')
-    .then(response => {
-      this.products = response.data;
-    })
-    .catch(error => {
-      console.error(error);
-    });
-
     axios.get('brands.json')
     .then(response => {
       this.brands = response.data;
       this.filters = [
         { defaultFilter: 'All Brands', data: this.brands }
       ];
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+    axios.get('products.json')
+    .then(response => {
+      this.products = response.data;
+      this.products.forEach((product) => {
+        this.brands.forEach((brand) => {
+          if (product.brand === brand.id)
+            product.brandName = brand.title;
+        })
+      })
     })
     .catch(error => {
       console.error(error);
