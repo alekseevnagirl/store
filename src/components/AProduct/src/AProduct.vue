@@ -1,9 +1,9 @@
 <template>
     <div class="product__wrapper">
-      <AImage :src="productData.image" width="250px"></AImage>
+      <AImage :src="productData.image" width="250px" class="product__image"></AImage>
       <p>{{ productData.title }}</p>
-      <p>{{ productData.brand }}</p>
-      <p>{{ productData.regular_price.value }}</p>
+      <p>{{ brandData.title }}</p>
+      <p>{{ currencySign(productData.regular_price.currency) }} {{ productData.regular_price.value }}</p>
     </div>
   </template>
   
@@ -14,6 +14,24 @@
       productData: {
         type: Object,
         default: {}
+      },
+      brandData: {
+        type: Object,
+        default: {}
+      }
+    },
+    data() {
+      return {
+      }
+    },
+    methods: {
+      currencySign(currency) {
+        if (currency && currency === 'USD') {
+          return '$';
+        }
+        else {
+          return '';
+        }
       }
     }
   }
@@ -22,5 +40,8 @@
 <style scoped>
 .product__wrapper {
   display: block;
+}
+.product__image {
+  border: 1px solid black;
 }
 </style>

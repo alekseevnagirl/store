@@ -1,6 +1,9 @@
 <template>
   <div class="mainPage__wrapper">
-    <ACatalog title="Catalog" :catalogData="products"></ACatalog>
+    <ACatalog title="Catalog" 
+      :productsData="products" 
+      :brandsData="brands">
+    </ACatalog>
   </div>
 </template>
 
@@ -19,7 +22,6 @@ export default {
     axios.get('products.json')
     .then(response => {
       this.products = response.data;
-      console.log('products', this.products);
     })
     .catch(error => {
       console.error(error);
@@ -28,7 +30,6 @@ export default {
     axios.get('brands.json')
     .then(response => {
       this.brands = response.data;
-      console.log('brands', this.brands);
     })
     .catch(error => {
       console.error(error);

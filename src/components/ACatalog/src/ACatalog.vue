@@ -1,25 +1,30 @@
 <template>
   <div class="catalog__wrapper">
-    <p class="catalog__title">{{ title }}</p>
 
     <div class="catalog__content">
       <div class="catalog__filters">
-        gdjohlfkxdko
+        <p>All Brands</p>
       </div>
 
-      <div class="catalog__products">
-        <div v-for="(item, index) in catalogData" 
-          :key="index">
-          <AProduct :productData="item"></AProduct>
+      <div>
+        <p class="catalog__title">{{ title }}</p>
+
+        <div class="catalog__products">
+          <div v-for="(item, index) in productsData" 
+            :key="index">
+            <AProduct :productData="item" 
+              :brandData="brandsData[item.brand - 1]">
+            </AProduct>
+          </div>
         </div>
+
       </div>
+
     </div>
   </div>
 </template>
   
 <script>
-import AProduct from '@/components/AProduct/src/AProduct.vue';
-
   export default {
     name: 'ACatalog',
     props: {
@@ -27,7 +32,11 @@ import AProduct from '@/components/AProduct/src/AProduct.vue';
         type: String,
         default: ''
       },
-      catalogData: {
+      productsData: {
+        type: Array,
+        default: []
+      },
+      brandsData: {
         type: Array,
         default: []
       }
@@ -39,6 +48,10 @@ import AProduct from '@/components/AProduct/src/AProduct.vue';
 .catalog__wrapper {
   display: block;
 }
+.catalog__title {
+  font-size: 32px;
+  margin: 0 0 12px 0;
+}
 .catalog__content {
   display: flex
 }
@@ -49,5 +62,6 @@ import AProduct from '@/components/AProduct/src/AProduct.vue';
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 20px;
 }
 </style>
