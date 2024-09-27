@@ -2,18 +2,22 @@
   <div class="catalog__wrapper">
 
     <div class="catalog__content">
-      <div class="catalog__filters">
-        <p>All Brands</p>
+      <div v-for="(filter, filterIndex) in filtersData" 
+        :key="filterIndex"
+        class="catalog__filters">
+        <AFilter :filterData="filter"
+          @selectedFilter="selectedFilter">
+        </AFilter>
       </div>
 
       <div>
         <p class="catalog__title">{{ title }}</p>
 
         <div class="catalog__products">
-          <div v-for="(item, index) in productsData" 
-            :key="index">
-            <AProduct :productData="item" 
-              :brandData="brandsData[item.brand - 1]">
+          <div v-for="(product, productIndex) in productsData" 
+            :key="productIndex">
+            <AProduct v-if="product.brand === filterId"
+              :productData="product">
             </AProduct>
           </div>
         </div>
@@ -36,9 +40,19 @@
         type: Array,
         default: []
       },
-      brandsData: {
+      filtersData: {
         type: Array,
         default: []
+      }
+    },
+    data() {
+      return {
+        filterId: 0
+      }
+    },
+    methods: {
+      selectedFilter(filterId) {
+        this.filterId = filterId;
       }
     }
   }

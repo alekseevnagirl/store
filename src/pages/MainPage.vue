@@ -2,7 +2,7 @@
   <div class="mainPage__wrapper">
     <ACatalog title="Catalog" 
       :productsData="products" 
-      :brandsData="brands">
+      :filtersData="filters">
     </ACatalog>
   </div>
 </template>
@@ -15,7 +15,8 @@ export default {
   data() {
     return {
       products: [],
-      brands: []
+      brands: [],
+      filters: []
     }
   },
   mounted() {
@@ -30,11 +31,13 @@ export default {
     axios.get('brands.json')
     .then(response => {
       this.brands = response.data;
+      this.filters = [
+        { defaultFilter: 'All Brands', data: this.brands }
+      ];
     })
     .catch(error => {
       console.error(error);
     });
-
   }
 }
 </script>
