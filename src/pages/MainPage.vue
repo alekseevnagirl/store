@@ -1,8 +1,6 @@
 <template>
   <div>
-
-    <ACatalog title="Catalog"></ACatalog>
-
+    <ACatalog title="Catalog" :catalogData="products"></ACatalog>
   </div>
 </template>
 
@@ -18,7 +16,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('./products.json')
+    axios.get('products.json')
     .then(response => {
       this.products = response.data;
       console.log('products', this.products);
@@ -27,7 +25,7 @@ export default {
       console.error(error);
     });
 
-    axios.get('./brands.json')
+    axios.get('brands.json')
     .then(response => {
       this.brands = response.data;
       console.log('brands', this.brands);
@@ -35,6 +33,7 @@ export default {
     .catch(error => {
       console.error(error);
     });
+
   }
 }
 </script>
