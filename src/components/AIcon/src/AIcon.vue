@@ -1,7 +1,7 @@
 <template>
     <div>
         <a :href="href">
-            <img :src="fullSrc"/>
+            <img :src="fullSrc" :height="height"/>
         </a>
     </div>
   </template>
@@ -17,6 +17,10 @@
         src: {
             type: String,
             default: ''
+        },
+        height: {
+          type: String,
+          default: 'auto'
         }
       },
       data() {
@@ -25,7 +29,7 @@
         }
       },
       mounted() {
-        this.fullSrc = '~@/assets/images/icons/' + this.src + '.png';
+        this.fullSrc = 'images/icons/' + this.src + '.png';
       }
     }
   </script>

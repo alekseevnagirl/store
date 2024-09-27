@@ -4,7 +4,7 @@ import MainPage from '../pages/MainPage.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'main',
     component: MainPage
   },
   {
