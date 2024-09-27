@@ -3,9 +3,15 @@
     <p class="catalog__title">{{ title }}</p>
 
     <div class="catalog__content">
-      <div v-for="(item, index) in catalogData" 
-        :key="index">
-        <AProduct :productData="item"></AProduct>
+      <div class="catalog__filters">
+        gdjohlfkxdko
+      </div>
+
+      <div class="catalog__products">
+        <div v-for="(item, index) in catalogData" 
+          :key="index">
+          <AProduct :productData="item"></AProduct>
+        </div>
       </div>
     </div>
   </div>
@@ -34,6 +40,14 @@ import AProduct from '@/components/AProduct/src/AProduct.vue';
   display: block;
 }
 .catalog__content {
+  display: flex
+}
+.catalog__filters {
+  width: 30%;
+}
+.catalog__products {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 </style>

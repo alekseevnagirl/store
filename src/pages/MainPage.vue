@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mainPage__wrapper">
     <ACatalog title="Catalog" :catalogData="products"></ACatalog>
   </div>
 </template>
@@ -37,3 +37,8 @@ export default {
   }
 }
 </script>
+
+<style>
+.mainPage__wrapper {
+  padding: 20px 5%;
+}</style>

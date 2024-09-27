@@ -1,6 +1,6 @@
 <template>
     <div class="product__wrapper">
-      <AImage :src="productData.url"></AImage>
+      <AImage :src="productData.image" width="250px"></AImage>
       <p>{{ productData.title }}</p>
       <p>{{ productData.brand }}</p>
       <p>{{ productData.regular_price.value }}</p>

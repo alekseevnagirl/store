@@ -1,6 +1,6 @@
 <template>
     <div class="image__wrapper">
-      <img :src="src" class="image"/>
+      <img :src="src" class="image" :width="width"/>
     </div>
   </template>
   
@@ -11,6 +11,10 @@
       src: {
         type: String,
         default: ''
+      },
+      width: {
+        type: String,
+        default: 'auto'
       }
     }
   }
