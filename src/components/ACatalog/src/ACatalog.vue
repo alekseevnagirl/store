@@ -16,7 +16,7 @@
         <div class="catalog__products">
           <div v-for="(product, productIndex) in productsData" 
             :key="productIndex">
-            <AProduct v-if="product.brand === filterId"
+            <AProduct v-if="product.brand === filterId || filterId === 0"
               :productData="product">
             </AProduct>
           </div>

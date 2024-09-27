@@ -1,13 +1,13 @@
 <template>
   <div>
     <button class="filter__button"
-      @click="filterOut()">
+      @click="filterOut(0)">
       {{ filterData.defaultFilter }}
     </button>
     <div v-for="(data, dataIndex) in filterData.data"
       key="dataIndex">
       <button class="filter__button"
-        @click="filterOut(data)">
+        @click="filterOut(data.id)">
         {{ data.title }}
       </button>
     </div>
@@ -24,8 +24,8 @@
       }
     },
     methods: {
-      filterOut(data) {
-        this.$emit('selectedFilter', data.id);
+      filterOut(id) {
+        this.$emit('selectedFilter', id);
       }
     }
   }
