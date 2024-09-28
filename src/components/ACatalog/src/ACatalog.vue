@@ -14,10 +14,10 @@
         <p class="catalog__title">{{ title }}</p>
 
         <div class="catalog__products">
-          <div v-for="(product, productIndex) in productsData" 
+          <div v-for="(product, productIndex) in setProducts(productsData)" 
             :key="productIndex">
-            <AProduct v-if="product.brand === filterId || filterId === 0"
-              :productData="product">
+            <AProduct :productData="product"
+              class="catalog__product">
             </AProduct>
           </div>
         </div>
@@ -47,10 +47,20 @@
     },
     data() {
       return {
-        filterId: 0
+        filterId: 0,
+        productsDataFiltered: []
       }
     },
     methods: {
+      setProducts(productsData) {
+        this.productsDataFiltered = productsData;
+        if (this.filterId !== 0) {
+          this.productsDataFiltered = productsData.filter(product => {
+            return product.brand === this.filterId;
+          });
+        }
+        return this.productsDataFiltered
+      },
       selectedFilter(filterId) {
         this.filterId = filterId;
       }
@@ -79,7 +89,10 @@
 .catalog__products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 20px;
+}
+.catalog__product >>> .image {
+  max-width: 300px;
 }
 </style>
