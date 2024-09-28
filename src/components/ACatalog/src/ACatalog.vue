@@ -17,7 +17,8 @@
           <div v-for="(product, productIndex) in setProducts(productsData)" 
             :key="productIndex">
             <AProduct :productData="product"
-              class="catalog__product">
+              class="catalog__product"
+              @click="addProductToCart(product)">
             </AProduct>
           </div>
         </div>
@@ -29,6 +30,9 @@
 </template>
   
 <script>
+  import { Store } from 'vuex';
+import store from '../../../store';
+
   export default {
     name: 'ACatalog',
     props: {
@@ -63,6 +67,10 @@
       },
       selectedFilter(filterId) {
         this.filterId = filterId;
+      },
+      addProductToCart(product) {
+        store.commit('addProductToCart', product);
+        console.log(store)
       }
     }
   }
@@ -91,6 +99,10 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 20px;
+}
+.catalog__product:hover {
+  cursor: pointer;
+  border: 2px solid gray;
 }
 .catalog__product >>> .image {
   max-width: 300px;

@@ -42,6 +42,6 @@
   display: block;
 }
 .product__image {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
 </style>
