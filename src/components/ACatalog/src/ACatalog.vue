@@ -30,7 +30,6 @@
 </template>
   
 <script>
-  import { Store } from 'vuex';
 import store from '../../../store';
 
   export default {
@@ -70,7 +69,6 @@ import store from '../../../store';
       },
       addProductToCart(product) {
         store.commit('addProductToCart', product);
-        console.log(store)
       }
     }
   }
