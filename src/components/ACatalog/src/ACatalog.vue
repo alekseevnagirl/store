@@ -17,8 +17,7 @@
           <div v-for="(product, productIndex) in setProducts(productsData)" 
             :key="productIndex">
             <AProduct :productData="product"
-              class="catalog__product"
-              @click="addProductToCart(product)">
+              class="catalog__product">
             </AProduct>
           </div>
         </div>
@@ -30,8 +29,6 @@
 </template>
   
 <script>
-import store from '../../../store';
-
   export default {
     name: 'ACatalog',
     props: {
@@ -66,14 +63,6 @@ import store from '../../../store';
       },
       selectedFilter(filterId) {
         this.filterId = filterId;
-      },
-      addProductToCart(product) {
-        if (product.quantity === undefined) {
-          product.quantity = 0;
-        }
-        product.quantity = product.quantity + 1;
-        store.commit('addProductToCart', product);
-        store.commit('removeDuplicates');
       }
     }
   }
@@ -102,16 +91,6 @@ import store from '../../../store';
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 20px;
-}
-.catalog__product {
-  border: 2px solid #fff;
-}
-.catalog__product:hover {
-  cursor: pointer;
-  border: 2px solid #ffdd00;
-}
-.catalog__product:focus {
-  border: 2px solid #ffdd00;
 }
 .catalog__product >>> .image {
   max-width: 300px;

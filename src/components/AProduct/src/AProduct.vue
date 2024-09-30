@@ -1,17 +1,27 @@
 <template>
     <div class="product__wrapper">
-      <AImage :src="productData.image"></AImage>
+      <div v-if="productData.type === 'simple'">
+        <AImage :src="productData.image"></AImage>
+      </div>
+
+      <div v-else>
+        <AImage :src="selectedProductSrc(productData)"></AImage>
+      </div>
+
       <p>{{ productData.title }}</p>
       <p>{{ productData.brandName }}</p>
       <p>{{ currencySign(productData.regular_price.currency) }}{{ productData.regular_price.value }}</p>
 
-      <div v-if="productData.configurable_options !== undefined">
+      <div v-if="productData.type === 'configurable'">
         <div v-for="(option, optionIndex) in productData.configurable_options">
 
           <div v-if="option.attribute_code === 'color'">
             <div class="product__options">
               <div v-for="(item, itemIndex) in option.values">
-                <div :style="{ backgroundColor: item.value }" class="product__option"></div>
+                <button :style="{ backgroundColor: item.value }" 
+                  class="product__option"
+                  @click="addColor(item)">
+                </button>
               </div>
             </div>
           </div>
@@ -19,17 +29,24 @@
           <div v-if="option.attribute_code === 'size'">
             <div class="product__options">
               <div v-for="(item, itemIndex) in option.values">
-                <div class="product__option">{{ item.label }}</div>
+                <div class="product__option">{{ setSize(item.label) }}</div>
               </div>
             </div>
           </div>
 
         </div>
       </div>
+
+      <AButton title="Add"
+        @click="addProductToCart(productData)"
+        class="product__add">
+      </AButton>
     </div>
   </template>
   
 <script>
+  import store from '../../../store';
+
   export default {
     name: 'AProduct',
     props: {
@@ -44,6 +61,9 @@
     },
     data() {
       return {
+        currentColor: 0,
+        currentSize: 0,
+        currentColorValueIndex: ''
       }
     },
     methods: {
@@ -54,6 +74,43 @@
         else {
           return '';
         }
+      },
+      addProductToCart(product) {
+        if (product.quantity === undefined) {
+          product.quantity = 0;
+        }
+        product.quantity = product.quantity + 1;
+        store.commit('addProductToCart', product);
+        store.commit('removeDuplicates');
+      },
+      /*setColor(item) {
+        let color = item.value;
+        if (this.currentColorValueIndex !== '') {
+
+        }
+        return color;
+      },*/
+      addColor(item) {
+        this.currentColorValueIndex = item.value_index;
+      },
+      setSize(size) {
+        return size;
+      },
+      selectedProductSrc(product) {
+        if (this.currentColorValueIndex !== '') {
+          let src = '';
+          product.variants.forEach((variant) => {
+            variant.attributes.forEach((option) => {
+              if (option.value_index === this.currentColorValueIndex && option.code === 'color') {
+                src = '/images' + variant.product.image;
+              }
+            })
+          });
+          return src;
+        }
+        else {
+          return product.image;
+          }
       }
     }
   }
@@ -77,7 +134,15 @@
 .product__option:hover {
   border: 2px solid #ffdd00;
 }
-.product_option:focus {
+.product__add {
+  border: 2px solid #fff;
+  width: fit-content;
+}
+.product__add:hover {
+  cursor: pointer;
+  border: 2px solid #ffdd00;
+}
+.product__add:focus {
   border: 2px solid #ffdd00;
 }
 </style>
