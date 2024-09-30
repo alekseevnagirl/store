@@ -9,7 +9,7 @@ const store = createStore({
       state.cart.push(product)
     },
     removeProductFromCart(state, product) {
-      state.cart = state.cart.filter(item => item !== product)
+      state.cart.splice(state.cart.indexOf(product), 1);
     },
     updateProductInCart(state, product) {
       const index = state.cart.findIndex(item => item.id === product.id)
