@@ -68,7 +68,12 @@ import store from '../../../store';
         this.filterId = filterId;
       },
       addProductToCart(product) {
+        if (product.quantity === undefined) {
+          product.quantity = 0;
+        }
+        product.quantity = product.quantity + 1;
         store.commit('addProductToCart', product);
+        store.commit('removeDuplicates');
       }
     }
   }
@@ -97,6 +102,9 @@ import store from '../../../store';
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 20px;
+}
+.catalog__product {
+  border: 2px solid #fff;
 }
 .catalog__product:hover {
   cursor: pointer;

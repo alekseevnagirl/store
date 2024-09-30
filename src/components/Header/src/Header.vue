@@ -31,7 +31,11 @@
     },
     computed: {
       cartCount() {
-        return store.state.cart.length;
+        let count = 0;
+        store.state.cart.forEach((product) => {
+          count = count + product.quantity;
+        })
+        return count;
       }
     }
   }

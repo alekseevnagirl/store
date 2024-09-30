@@ -1,4 +1,5 @@
 import AButton from './AButton';
+import ACart from './ACart';
 import ACatalog from './ACatalog';
 import AFilter from './AFilter';
 import AIcon from './AIcon';
@@ -8,6 +9,7 @@ import Header from './Header';
 
 export default [ 
     AButton, 
+    ACart,
     ACatalog,
     AFilter,
     AIcon,

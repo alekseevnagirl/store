@@ -16,6 +16,9 @@ const store = createStore({
       if (index !== -1) {
         state.cart[index] = product
       }
+    },
+    removeDuplicates(state) {
+      state.cart = [...new Map(state.cart.map(item => [item.id, item])).values()]
     }
   }
 })
