@@ -108,7 +108,10 @@ import store from '../../../store';
 }
 .catalog__product:hover {
   cursor: pointer;
-  border: 2px solid gray;
+  border: 2px solid #ffdd00;
+}
+.catalog__product:focus {
+  border: 2px solid #ffdd00;
 }
 .catalog__product >>> .image {
   max-width: 300px;
