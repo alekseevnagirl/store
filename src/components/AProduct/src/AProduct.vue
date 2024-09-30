@@ -3,7 +3,7 @@
       <AImage :src="productData.image"></AImage>
       <p>{{ productData.title }}</p>
       <p>{{ productData.brandName }}</p>
-      <p>{{ currencySign(productData.regular_price.currency) }} {{ productData.regular_price.value }}</p>
+      <p>{{ currencySign(productData.regular_price.currency) }}{{ productData.regular_price.value }}</p>
     </div>
   </template>
   

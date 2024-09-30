@@ -36,7 +36,7 @@
 
               <td class="cart__table__product">
                 <p>
-                  {{ currencySign(product.regular_price.currency) }} {{ product.regular_price.value }}
+                  {{ currencySign(product.regular_price.currency) }}{{ product.regular_price.value }}
                 </p>
               </td>
 
@@ -46,7 +46,7 @@
 
               <td class="cart__table__product">
                 <p>
-                  {{ currencySign(product.regular_price.currency) }} {{ product.regular_price.value * product.quantity }}
+                  {{ currencySign(product.regular_price.currency) }}{{ parseFloat((product.regular_price.value * product.quantity).toFixed(2)) }}
                 </p>
               </td>
 
@@ -61,6 +61,11 @@
             </tr>
           </table>
 
+        </div>
+
+        <div class="cart__total">
+          <p>Subtotal: {{ currency }}{{ getSubtotal(productsData) }}</p>
+          <AButton title="Checkout"></AButton>
         </div>
     </div>
   </template>
@@ -80,14 +85,20 @@
           default: []
         }
     },
+    data() {
+      return {
+        currency: ''
+      }
+    },
     methods: {
       currencySign(currency) {
         if (currency && currency === 'USD') {
-          return '$';
+          this.currency = '$';
         }
         else {
-          return '';
+          this.currency = '';
         }
+        return this.currency;
       },
       removeProductFromCart(product) {
         event.preventDefault();
@@ -96,6 +107,14 @@
       updateQuantity(event, product) {
         product.quantity = parseInt(event.target.value);
         store.commit('updateProductInCart', product);
+      },
+      getSubtotal(productsData) {
+        let sum = 0;
+        productsData.forEach((product) => {
+          sum = sum + (product.quantity * product.regular_price.value);
+        })
+        sum = sum.toFixed(2);
+        return sum;
       }
     }
   }
@@ -134,5 +153,11 @@
   }
   .cart__table__product input {
     max-width: 40px;
+  }
+  .cart__total {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    font-size: 32px;
   }
 </style>
