@@ -41,9 +41,7 @@
               </td>
 
               <td class="cart__table__product">
-                <p>
-                  {{ product.quantity }}
-                </p>
+                <input type="number" :value="product.quantity" min="1" step="1" @change="updateQuantity($event, product)">
               </td>
 
               <td class="cart__table__product">
@@ -94,6 +92,10 @@
       removeProductFromCart(product) {
         event.preventDefault();
         store.commit('removeProductFromCart', product);
+      },
+      updateQuantity(event, product) {
+        product.quantity = parseInt(event.target.value);
+        store.commit('updateProductInCart', product);
       }
     }
   }
@@ -129,5 +131,8 @@
   .cart__table__delete {
     border: none;
     background: none;
+  }
+  .cart__table__product input {
+    max-width: 40px;
   }
 </style>
