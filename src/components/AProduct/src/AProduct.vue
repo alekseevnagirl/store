@@ -83,13 +83,6 @@
         store.commit('addProductToCart', product);
         store.commit('removeDuplicates');
       },
-      /*setColor(item) {
-        let color = item.value;
-        if (this.currentColorValueIndex !== '') {
-
-        }
-        return color;
-      },*/
       addColor(item) {
         this.currentColorValueIndex = item.value_index;
       },
@@ -109,7 +102,8 @@
           return src;
         }
         else {
-          return product.image;
+          let src = '/images' + product.image;
+          return src;
           }
       }
     }

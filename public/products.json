@@ -20,7 +20,7 @@
       "currency": "USD",
       "value": 54.21
     },
-    "image": "/images/conf/default.png",
+    "image": "/image/conf/default.png",
     "configurable_options": [
       {
         "attribute_id": 93,
@@ -205,7 +205,7 @@
       "currency": "USD",
       "value": 63.27
     },
-    "image": "/images/conf/default.png",
+    "image": "/image/conf/default.png",
     "configurable_options": [
       {
         "attribute_id": 93,
@@ -342,7 +342,7 @@
       "currency": "USD",
       "value": 68.273
     },
-    "image": "/images/conf/default.png",
+    "image": "/image/conf/default.png",
     "configurable_options": [
       {
         "attribute_id": 93,

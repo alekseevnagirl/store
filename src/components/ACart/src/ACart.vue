@@ -29,7 +29,14 @@
             <tr v-for="(product, productIndex) in productsData">
               <td>
                 <p class="cart__table__product__name">
-                  <AImage :src="product.image" class="cart__table__product__image"></AImage>
+                  <AImage v-if="product.type === 'simple'" 
+                    :src="product.image" 
+                    class="cart__table__product__image">
+                  </AImage>
+                  <AImage v-else 
+                    :src="'/images' + product.image" 
+                    class="cart__table__product__image">
+                  </AImage>
                   {{ product.brandName }} / {{ product.title }}
                 </p>
               </td>
